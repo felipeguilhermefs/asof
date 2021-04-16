@@ -5,6 +5,7 @@ type Stack struct {
 	items []int
 }
 
+// Len total of items in stack
 func (s *Stack) Len() int {
 	return len(s.items)
 }
