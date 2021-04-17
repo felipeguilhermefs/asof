@@ -6,8 +6,8 @@ import (
 	"time"
 )
 
-// TestStack
-func TestStack(t *testing.T) {
+// testStack general stack test
+func testStack(t *testing.T, stack Stack) {
 	seed := time.Now().UnixNano()
 	rand.Seed(seed)
 
@@ -16,28 +16,41 @@ func TestStack(t *testing.T) {
 		"random-len1000": rand.Perm(1000),
 	} {
 		t.Run(name, func(t *testing.T) {
-			stack := Stack{}
 
-			for _, item := range list {
-				stack.Push(item)
-			}
+			shouldPushAll(t, stack, list)
 
-			if stack.Len() != len(list) {
-				t.Fatalf("Push error: got %d; want %d", stack.Len(), len(list))
-			}
+			shouldPopAllFromTop(t, stack, list)
 
-			for i := len(list) - 1; i >= 0; i-- {
-				item, ok := stack.Pop()
-				if !ok || item != list[i] {
-					t.Fatalf("Pop error: ok %v; index %d", ok, i)
-				}
-			}
-
-			_, ok := stack.Pop()
-			if ok {
-				t.Fatalf("Pop empty error: should be empty")
-			}
+			shouldNotifyWhenEmpty(t, stack)
 
 		})
+	}
+}
+
+func shouldPushAll(t *testing.T, stack Stack, list []int) {
+	for _, item := range list {
+		stack.Push(item)
+	}
+
+	if stack.Len() != len(list) {
+		t.Fatalf("Push error: got %d; want %d", stack.Len(), len(list))
+	}
+}
+
+func shouldPopAllFromTop(t *testing.T, stack Stack, list []int) {
+	for i := len(list) - 1; i >= 0; i-- {
+
+		item, ok := stack.Pop()
+
+		if !ok || item != list[i] {
+			t.Fatalf("Pop error: ok %v; index %d", ok, i)
+		}
+	}
+}
+
+func shouldNotifyWhenEmpty(t *testing.T, stack Stack) {
+	_, ok := stack.Pop()
+	if ok {
+		t.Fatalf("Pop empty error: should be empty")
 	}
 }
