@@ -46,6 +46,10 @@ func shouldPopAllFromTop(t *testing.T, stack Stack, list []int) {
 			t.Fatalf("Pop error: ok %v; index %d", ok, i)
 		}
 	}
+
+	if stack.Len() != 0 {
+		t.Fatalf("Pop error, not empty: got %d; want 0", stack.Len())
+	}
 }
 
 func shouldNotifyWhenEmpty(t *testing.T, stack Stack) {

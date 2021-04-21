@@ -34,7 +34,7 @@ func TestTwoStackQueue(t *testing.T) {
 			}
 
 			_, ok := queue.Dequeue()
-			if ok {
+			if ok || queue.Len() != 0 {
 				t.Fatalf("Dequeue empty error: should be empty")
 			}
 
