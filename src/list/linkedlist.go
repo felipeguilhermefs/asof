@@ -1,9 +1,11 @@
 package list
 
 // LinkedList single link data structure
+// please prefer import "container/list"
 type LinkedList struct {
-	head *node
-	length  int
+	head   *node
+	tail   *node
+	length int
 }
 
 type node struct {
@@ -13,28 +15,28 @@ type node struct {
 
 // Append pushes a item to the end of the list
 func (ll *LinkedList) Append(item int) {
-	ll.length++
-
 	newNode := &node{item, nil}
 
 	if ll.head == nil {
 		ll.head = newNode
-		return
+	} else {
+		ll.tail.next = newNode
 	}
 
-	current := ll.head
-	for current.next != nil {
-		current = current.next
-	}
-
-	current.next = newNode
+	ll.tail = newNode
+	ll.length++
 }
 
-// Prepend pushes a item to the begining of the list
-func (ll *LinkedList) Prepend(item int) {
-	newHead := &node{item, ll.head}
-	ll.head = newHead
-	ll.length++
+// Contains returns true if item is found
+func (ll *LinkedList) Contains(item int) bool {
+	current := ll.head
+	for current != nil {
+		if current.value == item {
+			return true
+		}
+		current = current.next
+	}
+	return false
 }
 
 // Delete removes the item requested from the list
@@ -59,25 +61,6 @@ func (ll *LinkedList) Delete(item int) {
 
 		current = current.next
 	}
-}
-
-// Index get the item at index
-func (ll *LinkedList) Index(i int) (int, bool) {
-
-	current := ll.head
-	for j := 0; j <= i; j++ {
-		if current == nil {
-			return 0, false
-		}
-
-		if j == i {
-			return current.value, true
-		}
-
-		current = current.next
-	}
-
-	return 0, false
 }
 
 // Len total of items in this list
