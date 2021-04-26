@@ -18,7 +18,7 @@ func (s *SliceStack) Pop() (int, bool) {
 		return -1, false
 	}
 
-	last := len(s.items) -1
+	last := len(s.items) - 1
 
 	item := s.items[last]
 	s.items = s.items[:last]

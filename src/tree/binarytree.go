@@ -55,7 +55,3 @@ func (bt *BinaryTree) contains(n *node, value int) bool {
 		return bt.contains(n.left, value)
 	}
 }
-
-
-
-
