@@ -114,6 +114,17 @@ func TestLinkedList(t *testing.T) {
 			t.Fatalf("Found something: len= %d visited= %v", len(visited), visited)
 		}
 	})
+
+	t.Run("should empty the list", func(t *testing.T) {
+		linkedList := LinkedList{}
+		linkedList.Append(1)
+		linkedList.Append(2)
+		linkedList.Append(3)
+
+		linkedList.Clear()
+
+		assertSameOrder(t, &linkedList, []int{})
+	})
 }
 
 func assertSameOrder(t *testing.T, linkedList *LinkedList, expected []int) {

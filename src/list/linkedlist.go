@@ -92,6 +92,13 @@ func (ll *LinkedList) Traverse(fn func(int)) {
 	}
 }
 
+// Clear removes references hold by the list
+func (ll *LinkedList) Clear() {
+	ll.head = nil
+	ll.tail = nil
+	ll.length = 0
+}
+
 // Len total of items in this list
 func (ll *LinkedList) Len() int {
 	return ll.length
