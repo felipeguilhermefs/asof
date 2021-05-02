@@ -1,21 +1,21 @@
 package list
 
-// LinkedList single link data structure
+// SingleLinkedList single link data structure
 // please prefer import "container/list"
-type LinkedList struct {
-	head   *node
-	tail   *node
+type SingleLinkedList struct {
+	head   *singleLinkNode
+	tail   *singleLinkNode
 	length int
 }
 
-type node struct {
+type singleLinkNode struct {
 	value int
-	next  *node
+	next  *singleLinkNode
 }
 
 // Append pushes an item to the end of the list
-func (ll *LinkedList) Append(item int) {
-	newNode := &node{item, nil}
+func (ll *SingleLinkedList) Append(item int) {
+	newNode := &singleLinkNode{item, nil}
 
 	if ll.head == nil {
 		ll.head = newNode
@@ -28,8 +28,8 @@ func (ll *LinkedList) Append(item int) {
 }
 
 // Prepend add an item to the start of the list
-func (ll *LinkedList) Prepend(item int) {
-	newNode := &node{item, ll.head}
+func (ll *SingleLinkedList) Prepend(item int) {
+	newNode := &singleLinkNode{item, ll.head}
 
 	if ll.head == nil {
 		ll.tail = newNode
@@ -40,7 +40,7 @@ func (ll *LinkedList) Prepend(item int) {
 }
 
 // Contains returns true if item is found
-func (ll *LinkedList) Contains(item int) bool {
+func (ll *SingleLinkedList) Contains(item int) bool {
 	current := ll.head
 	for current != nil {
 		if current.value == item {
@@ -52,7 +52,7 @@ func (ll *LinkedList) Contains(item int) bool {
 }
 
 // Delete removes the item requested from the list
-func (ll *LinkedList) Delete(item int) {
+func (ll *SingleLinkedList) Delete(item int) {
 	if ll.head == nil {
 		return
 	}
@@ -84,7 +84,7 @@ func (ll *LinkedList) Delete(item int) {
 }
 
 // Traverse call fn for each item in the list
-func (ll *LinkedList) Traverse(fn func(int)) {
+func (ll *SingleLinkedList) Traverse(fn func(int)) {
 	current := ll.head
 	for current != nil {
 		fn(current.value)
@@ -93,13 +93,13 @@ func (ll *LinkedList) Traverse(fn func(int)) {
 }
 
 // Clear removes references hold by the list
-func (ll *LinkedList) Clear() {
+func (ll *SingleLinkedList) Clear() {
 	ll.head = nil
 	ll.tail = nil
 	ll.length = 0
 }
 
 // Len total of items in this list
-func (ll *LinkedList) Len() int {
+func (ll *SingleLinkedList) Len() int {
 	return ll.length
 }
