@@ -13,7 +13,7 @@ type node struct {
 	next  *node
 }
 
-// Append pushes a item to the end of the list
+// Append pushes an item to the end of the list
 func (ll *LinkedList) Append(item int) {
 	newNode := &node{item, nil}
 
@@ -24,6 +24,18 @@ func (ll *LinkedList) Append(item int) {
 	}
 
 	ll.tail = newNode
+	ll.length++
+}
+
+// Prepend add an item to the start of the list
+func (ll *LinkedList) Prepend(item int) {
+	newNode := &node{item, ll.head}
+
+	if ll.head == nil {
+		ll.tail = newNode
+	}
+
+	ll.head = newNode
 	ll.length++
 }
 
@@ -64,7 +76,7 @@ func (ll *LinkedList) Delete(item int) {
 }
 
 // Traverse call fn for each item in the list
-func (ll *LinkedList) Traverse(fn func (int)) {
+func (ll *LinkedList) Traverse(fn func(int)) {
 	current := ll.head
 	for current != nil {
 		fn(current.value)
