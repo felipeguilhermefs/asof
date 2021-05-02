@@ -111,4 +111,38 @@ func TestLinkedListDelete(t *testing.T) {
 			t.Fatalf("Delete length error: got %d; want 4", linkedList.Len())
 		}
 	})
+
+	t.Run("should Traverse from head to tail", func(t *testing.T) {
+		linkedList := LinkedList{}
+		linkedList.Append(2)
+		linkedList.Append(5)
+		linkedList.Append(1)
+		linkedList.Append(4)
+		linkedList.Append(1)
+
+		visited := []int{}
+		linkedList.Traverse(func(item int) {
+			visited = append(visited, item)
+		})
+
+		expected := []int{2, 5, 1, 4, 1}
+		for i := range expected {
+			if visited[i] != expected[i] {
+				t.Fatalf("Unexpected: index= %d expected= %v visited= %v", i, expected, visited)
+			}
+		}
+	})
+
+	t.Run("should not visit any item in Traverse, if list is empty", func(t *testing.T) {
+		linkedList := LinkedList{}
+
+		visited := []int{}
+		linkedList.Traverse(func(item int) {
+			visited = append(visited, item)
+		})
+
+		if len(visited) > 0 {
+			t.Fatalf("Found something: len= %d visited= %v", len(visited), visited)
+		}
+	})
 }

@@ -63,6 +63,15 @@ func (ll *LinkedList) Delete(item int) {
 	}
 }
 
+// Traverse call fn for each item in the list
+func (ll *LinkedList) Traverse(fn func (int)) {
+	current := ll.head
+	for current != nil {
+		fn(current.value)
+		current = current.next
+	}
+}
+
 // Len total of items in this list
 func (ll *LinkedList) Len() int {
 	return ll.length
