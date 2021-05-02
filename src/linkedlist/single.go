@@ -1,7 +1,6 @@
 package list
 
 // SingleLinkedList single link data structure
-// please prefer import "container/list"
 type SingleLinkedList struct {
 	head   *singleLinkNode
 	tail   *singleLinkNode
@@ -13,7 +12,6 @@ type singleLinkNode struct {
 	next  *singleLinkNode
 }
 
-// Append pushes an item to the end of the list
 func (ll *SingleLinkedList) Append(item int) {
 	newNode := &singleLinkNode{item, nil}
 
@@ -27,7 +25,6 @@ func (ll *SingleLinkedList) Append(item int) {
 	ll.length++
 }
 
-// Prepend add an item to the start of the list
 func (ll *SingleLinkedList) Prepend(item int) {
 	newNode := &singleLinkNode{item, ll.head}
 
@@ -39,7 +36,6 @@ func (ll *SingleLinkedList) Prepend(item int) {
 	ll.length++
 }
 
-// Contains returns true if item is found
 func (ll *SingleLinkedList) Contains(item int) bool {
 	current := ll.head
 	for current != nil {
@@ -51,7 +47,6 @@ func (ll *SingleLinkedList) Contains(item int) bool {
 	return false
 }
 
-// Delete removes the item requested from the list
 func (ll *SingleLinkedList) Delete(item int) {
 	if ll.head == nil {
 		return
@@ -83,7 +78,6 @@ func (ll *SingleLinkedList) Delete(item int) {
 	}
 }
 
-// Traverse call fn for each item in the list
 func (ll *SingleLinkedList) Traverse(fn func(int)) {
 	current := ll.head
 	for current != nil {
@@ -92,14 +86,12 @@ func (ll *SingleLinkedList) Traverse(fn func(int)) {
 	}
 }
 
-// Clear removes references hold by the list
 func (ll *SingleLinkedList) Clear() {
 	ll.head = nil
 	ll.tail = nil
 	ll.length = 0
 }
 
-// Len total of items in this list
 func (ll *SingleLinkedList) Len() int {
 	return ll.length
 }
