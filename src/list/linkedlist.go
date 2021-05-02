@@ -59,6 +59,10 @@ func (ll *LinkedList) Delete(item int) {
 
 	if ll.head.value == item {
 		ll.head = ll.head.next
+		if ll.head == nil {
+			ll.tail = nil
+		}
+
 		ll.length--
 		return
 	}
@@ -66,6 +70,10 @@ func (ll *LinkedList) Delete(item int) {
 	current := ll.head
 	for current.next != nil {
 		if current.next.value == item {
+			if current.next == ll.tail {
+				ll.tail = current
+			}
+
 			current.next = current.next.next
 			ll.length--
 			return

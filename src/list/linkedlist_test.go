@@ -90,6 +90,18 @@ func TestLinkedList(t *testing.T) {
 		assertSameOrder(t, &linkedList, []int{1, 2, 3, 4})
 	})
 
+	t.Run("should keep pointers consistent after delete last item", func(t *testing.T) {
+		linkedList := LinkedList{}
+		linkedList.Append(1)
+
+		linkedList.Append(2)
+		linkedList.Delete(2)
+
+		linkedList.Append(3)
+
+		assertSameOrder(t, &linkedList, []int{1, 3})
+	})
+
 	t.Run("should not visit any item in Traverse, if list is empty", func(t *testing.T) {
 		linkedList := LinkedList{}
 
