@@ -18,4 +18,4 @@ type LinkedList interface {
 	Len() int
 }
 
-type TraverseFn = func(int)
+type TraverseFn = func(int) bool

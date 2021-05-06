@@ -9,15 +9,20 @@ import (
 func IsPalindrome(list *linkedlist.SingleLinkedList) bool {
 	s := stack.LinkedStack{}
 
-	list.Traverse(func(value int) {
+	list.Traverse(func(value int) bool {
 		s.Push(value)
+
+		return true
 	})
 
 	check := true
-	list.Traverse(func(value int) {
+	list.Traverse(func(value int) bool {
+
 		if sValue, ok := s.Pop(); !ok || sValue != value {
 			check = false
 		}
+
+		return check
 	})
 
 	return check

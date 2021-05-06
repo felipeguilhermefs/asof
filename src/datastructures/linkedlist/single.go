@@ -78,10 +78,15 @@ func (ll *SingleLinkedList) Delete(item int) {
 	}
 }
 
-func (ll *SingleLinkedList) Traverse(fn func(int)) {
+func (ll *SingleLinkedList) Traverse(fn func(int) bool) {
 	current := ll.head
+
 	for current != nil {
-		fn(current.value)
+
+		if !fn(current.value) {
+			return
+		}
+
 		current = current.next
 	}
 }

@@ -106,8 +106,9 @@ func testLinkedList(t *testing.T, newListFn func() LinkedList) {
 		linkedList := newListFn()
 
 		visited := []int{}
-		linkedList.Traverse(func(item int) {
+		linkedList.Traverse(func(item int) bool {
 			visited = append(visited, item)
+			return true
 		})
 
 		if len(visited) > 0 {
@@ -133,8 +134,9 @@ func assertSameOrder(t *testing.T, linkedList LinkedList, expected []int) {
 	}
 
 	visited := []int{}
-	linkedList.Traverse(func(item int) {
+	linkedList.Traverse(func(item int) bool {
 		visited = append(visited, item)
+		return true
 	})
 
 	for i := range expected {
