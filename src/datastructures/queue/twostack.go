@@ -9,8 +9,8 @@ import "github.com/felipeguilhermefs/asof/datastructures/stack"
 //  - when there is nothing in stack 2
 //    we pop from stack 1 and push to stack 2
 type TwoStackQueue struct {
-	stack1 stack.Stack
-	stack2 stack.Stack
+	stack1 stack.LinkedStack
+	stack2 stack.LinkedStack
 }
 
 // Len total of items in queue
