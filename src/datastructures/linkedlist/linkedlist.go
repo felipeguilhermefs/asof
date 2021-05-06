@@ -1,4 +1,4 @@
-package list
+package linkedlist
 
 // LinkedList base linked list data structure
 type LinkedList interface {

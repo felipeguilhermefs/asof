@@ -1,6 +1,6 @@
 package queue
 
-import "github.com/felipeguilhermefs/asof/stack"
+import "github.com/felipeguilhermefs/asof/datastructures/stack"
 
 // TwoStackQueue queue (FIFO) implemented with 2 stacks
 // The idea is that:

@@ -1,4 +1,4 @@
-package list
+package linkedlist
 
 // SingleLinkedList single link data structure
 type SingleLinkedList struct {
