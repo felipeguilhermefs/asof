@@ -9,23 +9,35 @@ import "github.com/felipeguilhermefs/asof/datastructures/stack"
 //  - when there is nothing in stack 2
 //    we pop from stack 1 and push to stack 2
 type TwoStackQueue struct {
-	stack1 stack.LinkedStack
-	stack2 stack.LinkedStack
+	stack1 stack.Stack
+	stack2 stack.Stack
 }
 
 // Len total of items in queue
 func (q *TwoStackQueue) Len() int {
+	if q.stack1 == nil {
+		return 0
+	}
+
 	return q.stack1.Len() + q.stack2.Len()
 }
 
 // Enqueue insert item at the end of the queue
 func (q *TwoStackQueue) Enqueue(item int) {
+	if q.stack1 == nil {
+		q.stack1 = stack.NewStack()
+		q.stack2 = stack.NewStack()
+	}
 	// always push to the stack 1
 	q.stack1.Push(item)
 }
 
 // Dequeue get item at the start of the queue
 func (q *TwoStackQueue) Dequeue() (int, bool) {
+	if q.stack1 == nil {
+		return -1, false
+	}
+
 	// we pop from stack 2 if there is something there
 	if item, ok := q.stack2.Pop(); ok {
 		return item, true

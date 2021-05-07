@@ -7,7 +7,7 @@ import (
 
 // IsPalindrome check if the SingleLinkedList is a palindrome
 func IsPalindrome(list *linkedlist.SingleLinkedList) bool {
-	s := stack.LinkedStack{}
+	s := stack.NewStack()
 
 	list.Traverse(func(value int) bool {
 		s.Push(value)

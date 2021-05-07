@@ -25,3 +25,11 @@ func (s *SliceStack) Pop() (int, bool) {
 
 	return item, true
 }
+
+func (s *SliceStack) Peek() (int, bool) {
+	if len(s.items) == 0 {
+		return -1, false
+	}
+
+	return s.items[len(s.items) - 1], true
+}

@@ -8,6 +8,14 @@ type Stack interface {
 	// if empty returns -1 and false
 	// if not returns the top item and true
 	Pop() (int, bool)
+	// Peek similar to Pop, but doesn't remove the item from the stack
+	Peek() (int, bool)
 	// Len total of items in stack
 	Len() int
+}
+
+// NewStack creates a new stack instance
+func NewStack() Stack {
+	//LinkedStack is a better implementation at the moment
+	return &LinkedStack{}
 }

@@ -36,3 +36,11 @@ func (s *LinkedStack) Pop() (int, bool) {
 
 	return topNone.value, true
 }
+
+func (s *LinkedStack) Peek() (int, bool) {
+	if s.length == 0 {
+		return -1, false
+	}
+
+	return s.top.value, true
+}
