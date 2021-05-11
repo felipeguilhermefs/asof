@@ -15,12 +15,12 @@ func TestLinkedList(t *testing.T) {
 		assertSameOrder(t, &linkedList, []int{1, 2, 3, 4})
 	})
 
-	t.Run("should prepend to the start of the list", func(t *testing.T) {
+	t.Run("PushLeft should add to the start/left of the list", func(t *testing.T) {
 		linkedList := LinkedList{}
-		linkedList.Prepend(1)
-		linkedList.Prepend(2)
-		linkedList.Prepend(3)
-		linkedList.Prepend(4)
+		linkedList.PushLeft(1)
+		linkedList.PushLeft(2)
+		linkedList.PushLeft(3)
+		linkedList.PushLeft(4)
 
 		assertSameOrder(t, &linkedList, []int{4, 3, 2, 1})
 	})

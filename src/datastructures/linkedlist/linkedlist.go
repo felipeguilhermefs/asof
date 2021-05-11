@@ -28,8 +28,8 @@ func (ll *LinkedList) PushRight(item int) {
 	ll.length++
 }
 
-// Prepend add an item to the start of the list
-func (ll *LinkedList) Prepend(item int) {
+// PushLeft add an item to the start/left of the list
+func (ll *LinkedList) PushLeft(item int) {
 	newNode := &node{item, ll.head}
 
 	if ll.head == nil {
