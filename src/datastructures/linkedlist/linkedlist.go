@@ -14,7 +14,7 @@ type node struct {
 	next  *node
 }
 
-// PushRight pushes an item to the end/right of the list
+// PushRight pushes an item to the end/right of the list. O(1) time complexity
 func (ll *LinkedList) PushRight(item int) {
 	newNode := &node{item, nil}
 
@@ -28,7 +28,7 @@ func (ll *LinkedList) PushRight(item int) {
 	ll.length++
 }
 
-// PushLeft add an item to the start/left of the list
+// PushLeft add an item to the start/left of the list. O(1) time complexity
 func (ll *LinkedList) PushLeft(item int) {
 	newNode := &node{item, ll.head}
 
@@ -40,7 +40,7 @@ func (ll *LinkedList) PushLeft(item int) {
 	ll.length++
 }
 
-// Contains returns true if item is found
+// Contains returns true if item is found. O(n) time complexity
 func (ll *LinkedList) Contains(item int) bool {
 	current := ll.head
 	for current != nil {
@@ -52,7 +52,7 @@ func (ll *LinkedList) Contains(item int) bool {
 	return false
 }
 
-// Delete removes the item requested from the list
+// Delete removes the item requested from the list. O(n) time complexity
 func (ll *LinkedList) Delete(item int) {
 	if ll.head == nil {
 		return
@@ -84,7 +84,7 @@ func (ll *LinkedList) Delete(item int) {
 	}
 }
 
-// Traverse call fn for each item in the list
+// Traverse call fn for each item in the list. O(n) time complexity
 func (ll *LinkedList) Traverse(fn func(int) bool) {
 	current := ll.head
 
@@ -98,14 +98,14 @@ func (ll *LinkedList) Traverse(fn func(int) bool) {
 	}
 }
 
-// Clear empties the list
+// Clear empties the list. O(1) time complexity
 func (ll *LinkedList) Clear() {
 	ll.head = nil
 	ll.tail = nil
 	ll.length = 0
 }
 
-// Len total of items in this list
+// Len total of items in this list. O(1) time complexity
 func (ll *LinkedList) Len() int {
 	return ll.length
 }
