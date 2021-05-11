@@ -28,6 +28,39 @@ func (ll *LinkedList) PushRight(element int) {
 	ll.length++
 }
 
+// PopRight remove and return the element at the end of the list. O(n) time complexity
+//     If not empty returns element, true
+//     Else 					 -1, false
+func (ll *LinkedList) PopRight() (int, bool) {
+	if ll.tail == nil {
+		return -1, false
+	}
+
+	if ll.head == ll.tail {
+		element := ll.tail.value
+
+		ll.Clear()
+
+		return element, true
+	}
+
+	current := ll.head
+	for current.next != nil {
+		if current.next == ll.tail {
+			element := ll.tail.value
+
+			ll.tail = current
+			ll.tail.next = nil
+			ll.length--
+
+			return element, true
+		}
+	}
+
+	// should never get here
+	return -1, false
+}
+
 // PushLeft add an element to the start/left of the list. O(1) time complexity
 func (ll *LinkedList) PushLeft(element int) {
 	newNode := &node{element, ll.head}
