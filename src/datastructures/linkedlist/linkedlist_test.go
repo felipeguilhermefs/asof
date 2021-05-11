@@ -46,6 +46,27 @@ func TestLinkedList(t *testing.T) {
 		assertSameOrder(t, &linkedList, []int{4, 3, 2, 1})
 	})
 
+	t.Run("PopLeft should pop element at the start/left of the list", func(t *testing.T) {
+		linkedList := LinkedList{}
+		linkedList.PushRight(1)
+		linkedList.PushRight(2)
+
+		element, ok := linkedList.PopLeft()
+		if !ok || element != 1 || linkedList.Len() != 1 {
+			t.Fatalf("PopLeft error: expected 1, got %d, %v, %d", element, ok, linkedList.Len())
+		}
+
+		element, ok = linkedList.PopLeft()
+		if !ok || element != 2 || linkedList.Len() != 0 {
+			t.Fatalf("PopLeft error: expected 2, got %d, %v, %d", element, ok, linkedList.Len())
+		}
+
+		element, ok = linkedList.PopLeft()
+		if ok {
+			t.Fatalf("PopLeft error: expected empty list, got %d, %v", element, ok)
+		}
+	})
+
 	t.Run("should remove from begining", func(t *testing.T) {
 		linkedList := LinkedList{}
 		linkedList.PushRight(1)

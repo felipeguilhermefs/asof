@@ -73,6 +73,30 @@ func (ll *LinkedList) PushLeft(element int) {
 	ll.length++
 }
 
+// PopLeft remove and return the element at the start of the list. O(1) time complexity
+//     If not empty returns element, true
+//     Else 					 -1, false
+func (ll *LinkedList) PopLeft() (int, bool) {
+	if ll.head == nil {
+		return -1, false
+	}
+
+	if ll.head == ll.tail {
+		element := ll.tail.value
+
+		ll.Clear()
+
+		return element, true
+	}
+
+	element := ll.head.value
+
+	ll.head = ll.head.next
+	ll.length--
+
+	return element, true
+}
+
 // Contains returns true if element is found. O(n) time complexity
 func (ll *LinkedList) Contains(element int) bool {
 	current := ll.head
