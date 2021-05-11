@@ -5,11 +5,11 @@ import (
 	"github.com/felipeguilhermefs/asof/datastructures/set"
 )
 
-//DistinctSingleLinkedList returns a new SingleLinkedList with distinct elements
-// for a single linked list we can do this by keeping a collection of seen elements
+//DistinctLinkedList returns a new LinkedList with distinct elements
+// for a linked list we can do this by keeping a collection of seen elements
 // and checking against that. In this case we used the Set datastructure
-func DistinctSingleLinkedList(list *linkedlist.SingleLinkedList) *linkedlist.SingleLinkedList {
-	distinct := linkedlist.SingleLinkedList{}
+func DistinctLinkedList(list *linkedlist.LinkedList) *linkedlist.LinkedList {
+	distinct := linkedlist.LinkedList{}
 	if list == nil {
 		return &distinct
 	}
@@ -23,7 +23,7 @@ func DistinctSingleLinkedList(list *linkedlist.SingleLinkedList) *linkedlist.Sin
 			distinct.Append(value)
 		}
 
-		return true;
+		return true
 	})
 
 	return &distinct

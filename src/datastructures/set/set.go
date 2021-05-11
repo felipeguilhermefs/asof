@@ -22,7 +22,7 @@ func (s *Set) Contains(value int) bool {
 
 	_, ok := s.items[value]
 
-	return ok;
+	return ok
 }
 
 // Len return set cardinality

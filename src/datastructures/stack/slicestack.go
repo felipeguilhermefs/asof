@@ -31,5 +31,5 @@ func (s *SliceStack) Peek() (int, bool) {
 		return -1, false
 	}
 
-	return s.items[len(s.items) - 1], true
+	return s.items[len(s.items)-1], true
 }

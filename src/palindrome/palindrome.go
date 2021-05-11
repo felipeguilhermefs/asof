@@ -5,8 +5,8 @@ import (
 	"github.com/felipeguilhermefs/asof/datastructures/stack"
 )
 
-// IsPalindrome check if the SingleLinkedList is a palindrome
-func IsPalindrome(list *linkedlist.SingleLinkedList) bool {
+// IsPalindrome check if the LinkedList is a palindrome
+func IsPalindrome(list *linkedlist.LinkedList) bool {
 	s := stack.NewStack()
 
 	list.Traverse(func(value int) bool {

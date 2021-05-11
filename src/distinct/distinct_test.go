@@ -6,32 +6,32 @@ import (
 	"github.com/felipeguilhermefs/asof/datastructures/linkedlist"
 )
 
-//TestDistinctSingleLinkedList
-func TestDistinctSingleLinkedList(t *testing.T) {
+//TestDistinctLinkedList
+func TestDistinctLinkedList(t *testing.T) {
 
 	t.Run("should return emtpy when empty", func(t *testing.T) {
-		distinct := DistinctSingleLinkedList(&linkedlist.SingleLinkedList{})
+		distinct := DistinctLinkedList(&linkedlist.LinkedList{})
 		if distinct.Len() != 0 {
 			t.Fatalf("Should be empty, but len = %d", distinct.Len())
 		}
 	})
 
 	t.Run("should return emtpy when nil", func(t *testing.T) {
-		distinct := DistinctSingleLinkedList(nil)
+		distinct := DistinctLinkedList(nil)
 		if distinct.Len() != 0 {
 			t.Fatalf("Should be empty, but len = %d", distinct.Len())
 		}
 	})
 
 	t.Run("should return only distinct elements", func(t *testing.T) {
-		testList := linkedlist.SingleLinkedList{}
+		testList := linkedlist.LinkedList{}
 		testList.Append(1)
 		testList.Append(1)
 		testList.Append(1)
 		testList.Append(12)
 		testList.Append(2)
 
-		distinct := DistinctSingleLinkedList(&testList)
+		distinct := DistinctLinkedList(&testList)
 		if distinct.Len() != 3 {
 			t.Fatalf("Should have length 3, but len = %d", distinct.Len())
 		}
