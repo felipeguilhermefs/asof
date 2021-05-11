@@ -25,11 +25,11 @@ func TestDistinctLinkedList(t *testing.T) {
 
 	t.Run("should return only distinct elements", func(t *testing.T) {
 		testList := linkedlist.LinkedList{}
-		testList.Append(1)
-		testList.Append(1)
-		testList.Append(1)
-		testList.Append(12)
-		testList.Append(2)
+		testList.PushRight(1)
+		testList.PushRight(1)
+		testList.PushRight(1)
+		testList.PushRight(12)
+		testList.PushRight(2)
 
 		distinct := DistinctLinkedList(&testList)
 		if distinct.Len() != 3 {

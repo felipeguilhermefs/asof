@@ -20,7 +20,7 @@ func DistinctLinkedList(list *linkedlist.LinkedList) *linkedlist.LinkedList {
 
 		if !seen.Contains(value) {
 			seen.Add(value)
-			distinct.Append(value)
+			distinct.PushRight(value)
 		}
 
 		return true

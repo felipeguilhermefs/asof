@@ -57,7 +57,7 @@ func newTestList(data []int) *linkedlist.LinkedList {
 	list := linkedlist.LinkedList{}
 
 	for _, val := range data {
-		list.Append(val)
+		list.PushRight(val)
 	}
 
 	return &list

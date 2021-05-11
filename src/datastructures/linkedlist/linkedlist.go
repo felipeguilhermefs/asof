@@ -14,8 +14,8 @@ type node struct {
 	next  *node
 }
 
-// Append pushes an item to the end of the list
-func (ll *LinkedList) Append(item int) {
+// PushRight pushes an item to the end/right of the list
+func (ll *LinkedList) PushRight(item int) {
 	newNode := &node{item, nil}
 
 	if ll.head == nil {

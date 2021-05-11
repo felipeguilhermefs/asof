@@ -5,12 +5,12 @@ import "testing"
 // TestLinkedList
 func TestLinkedList(t *testing.T) {
 
-	t.Run("should append to the end of the list", func(t *testing.T) {
+	t.Run("PushRight should add to the end/right of the list", func(t *testing.T) {
 		linkedList := LinkedList{}
-		linkedList.Append(1)
-		linkedList.Append(2)
-		linkedList.Append(3)
-		linkedList.Append(4)
+		linkedList.PushRight(1)
+		linkedList.PushRight(2)
+		linkedList.PushRight(3)
+		linkedList.PushRight(4)
 
 		assertSameOrder(t, &linkedList, []int{1, 2, 3, 4})
 	})
@@ -27,10 +27,10 @@ func TestLinkedList(t *testing.T) {
 
 	t.Run("should remove from begining", func(t *testing.T) {
 		linkedList := LinkedList{}
-		linkedList.Append(1)
-		linkedList.Append(2)
-		linkedList.Append(3)
-		linkedList.Append(4)
+		linkedList.PushRight(1)
+		linkedList.PushRight(2)
+		linkedList.PushRight(3)
+		linkedList.PushRight(4)
 
 		linkedList.Delete(1)
 
@@ -43,10 +43,10 @@ func TestLinkedList(t *testing.T) {
 
 	t.Run("should remove from end", func(t *testing.T) {
 		linkedList := LinkedList{}
-		linkedList.Append(1)
-		linkedList.Append(2)
-		linkedList.Append(3)
-		linkedList.Append(4)
+		linkedList.PushRight(1)
+		linkedList.PushRight(2)
+		linkedList.PushRight(3)
+		linkedList.PushRight(4)
 
 		linkedList.Delete(4)
 
@@ -59,11 +59,11 @@ func TestLinkedList(t *testing.T) {
 
 	t.Run("should remove from middle", func(t *testing.T) {
 		linkedList := LinkedList{}
-		linkedList.Append(1)
-		linkedList.Append(2)
-		linkedList.Append(3)
-		linkedList.Append(4)
-		linkedList.Append(5)
+		linkedList.PushRight(1)
+		linkedList.PushRight(2)
+		linkedList.PushRight(3)
+		linkedList.PushRight(4)
+		linkedList.PushRight(5)
 
 		linkedList.Delete(3)
 
@@ -76,10 +76,10 @@ func TestLinkedList(t *testing.T) {
 
 	t.Run("should not remove if nothing is found", func(t *testing.T) {
 		linkedList := LinkedList{}
-		linkedList.Append(1)
-		linkedList.Append(2)
-		linkedList.Append(3)
-		linkedList.Append(4)
+		linkedList.PushRight(1)
+		linkedList.PushRight(2)
+		linkedList.PushRight(3)
+		linkedList.PushRight(4)
 
 		linkedList.Delete(5)
 
@@ -92,12 +92,12 @@ func TestLinkedList(t *testing.T) {
 
 	t.Run("should keep pointers consistent after delete last item", func(t *testing.T) {
 		linkedList := LinkedList{}
-		linkedList.Append(1)
+		linkedList.PushRight(1)
 
-		linkedList.Append(2)
+		linkedList.PushRight(2)
 		linkedList.Delete(2)
 
-		linkedList.Append(3)
+		linkedList.PushRight(3)
 
 		assertSameOrder(t, &linkedList, []int{1, 3})
 	})
@@ -118,9 +118,9 @@ func TestLinkedList(t *testing.T) {
 
 	t.Run("should empty the list", func(t *testing.T) {
 		linkedList := LinkedList{}
-		linkedList.Append(1)
-		linkedList.Append(2)
-		linkedList.Append(3)
+		linkedList.PushRight(1)
+		linkedList.PushRight(2)
+		linkedList.PushRight(3)
 
 		linkedList.Clear()
 
