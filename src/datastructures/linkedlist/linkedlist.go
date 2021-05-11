@@ -4,8 +4,8 @@ type TraverseFn = func(int) bool
 
 // LinkedList single link data structure
 type LinkedList struct {
-	head   *node
-	tail   *node
+	start  *node
+	end    *node
 	length int
 }
 
@@ -18,13 +18,13 @@ type node struct {
 func (ll *LinkedList) PushRight(element int) {
 	newNode := &node{element, nil}
 
-	if ll.head == nil {
-		ll.head = newNode
+	if ll.start == nil {
+		ll.start = newNode
 	} else {
-		ll.tail.next = newNode
+		ll.end.next = newNode
 	}
 
-	ll.tail = newNode
+	ll.end = newNode
 	ll.length++
 }
 
@@ -32,25 +32,25 @@ func (ll *LinkedList) PushRight(element int) {
 //     If not empty returns element, true
 //     Else 					 -1, false
 func (ll *LinkedList) PopRight() (int, bool) {
-	if ll.tail == nil {
+	if ll.end == nil {
 		return -1, false
 	}
 
-	if ll.head == ll.tail {
-		element := ll.tail.value
+	if ll.start == ll.end {
+		element := ll.end.value
 
 		ll.Clear()
 
 		return element, true
 	}
 
-	current := ll.head
+	current := ll.start
 	for current.next != nil {
-		if current.next == ll.tail {
-			element := ll.tail.value
+		if current.next == ll.end {
+			element := ll.end.value
 
-			ll.tail = current
-			ll.tail.next = nil
+			ll.end = current
+			ll.end.next = nil
 			ll.length--
 
 			return element, true
@@ -63,13 +63,13 @@ func (ll *LinkedList) PopRight() (int, bool) {
 
 // PushLeft add an element to the start/left of the list. O(1) time complexity
 func (ll *LinkedList) PushLeft(element int) {
-	newNode := &node{element, ll.head}
+	newNode := &node{element, ll.start}
 
-	if ll.head == nil {
-		ll.tail = newNode
+	if ll.start == nil {
+		ll.end = newNode
 	}
 
-	ll.head = newNode
+	ll.start = newNode
 	ll.length++
 }
 
@@ -77,21 +77,21 @@ func (ll *LinkedList) PushLeft(element int) {
 //     If not empty returns element, true
 //     Else 					 -1, false
 func (ll *LinkedList) PopLeft() (int, bool) {
-	if ll.head == nil {
+	if ll.start == nil {
 		return -1, false
 	}
 
-	if ll.head == ll.tail {
-		element := ll.tail.value
+	if ll.start == ll.end {
+		element := ll.end.value
 
 		ll.Clear()
 
 		return element, true
 	}
 
-	element := ll.head.value
+	element := ll.start.value
 
-	ll.head = ll.head.next
+	ll.start = ll.start.next
 	ll.length--
 
 	return element, true
@@ -99,7 +99,7 @@ func (ll *LinkedList) PopLeft() (int, bool) {
 
 // Contains returns true if element is found. O(n) time complexity
 func (ll *LinkedList) Contains(element int) bool {
-	current := ll.head
+	current := ll.start
 	for current != nil {
 		if current.value == element {
 			return true
@@ -111,25 +111,25 @@ func (ll *LinkedList) Contains(element int) bool {
 
 // Delete removes the element requested from the list. O(n) time complexity
 func (ll *LinkedList) Delete(element int) {
-	if ll.head == nil {
+	if ll.start == nil {
 		return
 	}
 
-	if ll.head.value == element {
-		ll.head = ll.head.next
-		if ll.head == nil {
-			ll.tail = nil
+	if ll.start.value == element {
+		ll.start = ll.start.next
+		if ll.start == nil {
+			ll.end = nil
 		}
 
 		ll.length--
 		return
 	}
 
-	current := ll.head
+	current := ll.start
 	for current.next != nil {
 		if current.next.value == element {
-			if current.next == ll.tail {
-				ll.tail = current
+			if current.next == ll.end {
+				ll.end = current
 			}
 
 			current.next = current.next.next
@@ -143,7 +143,7 @@ func (ll *LinkedList) Delete(element int) {
 
 // Traverse call fn for each element in the list. O(n) time complexity
 func (ll *LinkedList) Traverse(fn func(int) bool) {
-	current := ll.head
+	current := ll.start
 
 	for current != nil {
 
@@ -157,8 +157,8 @@ func (ll *LinkedList) Traverse(fn func(int) bool) {
 
 // Clear empties the list. O(1) time complexity
 func (ll *LinkedList) Clear() {
-	ll.head = nil
-	ll.tail = nil
+	ll.start = nil
+	ll.end = nil
 	ll.length = 0
 }
 
