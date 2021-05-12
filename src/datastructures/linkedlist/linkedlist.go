@@ -141,6 +141,11 @@ func (ll *LinkedList) Delete(element int) {
 	}
 }
 
+// Sort quicksort inplace this linked list. O(nlgn) time complexity
+func (ll *LinkedList) Sort() {
+	ll.sort(ll.start, ll.end)
+}
+
 // Traverse call fn for each element in the list. O(n) time complexity
 func (ll *LinkedList) Traverse(fn func(int) bool) {
 	current := ll.start
