@@ -2,8 +2,8 @@ package linkedlist
 
 import "testing"
 
-// TestLinkedListQuicksort
-func TestLinkedListQuicksort(t *testing.T) {
+// TestQuicksort
+func TestQuicksort(t *testing.T) {
 
 	t.Run("Quicksort should sort", func(t *testing.T) {
 		linkedList := LinkedList{}

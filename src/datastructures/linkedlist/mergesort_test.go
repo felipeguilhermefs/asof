@@ -2,8 +2,8 @@ package linkedlist
 
 import "testing"
 
-// TestLinkedListMergesort
-func TestLinkedListMergesort(t *testing.T) {
+// TestMergesort
+func TestMergesort(t *testing.T) {
 
 	t.Run("Mergesort should sort", func(t *testing.T) {
 		linkedList := LinkedList{}

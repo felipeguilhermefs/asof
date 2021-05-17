@@ -2,8 +2,8 @@ package linkedlist
 
 import "testing"
 
-//TestLinkedListDistinct
-func Testdistinct(t *testing.T) {
+//TestDistinct
+func TestDistinct(t *testing.T) {
 
 	t.Run("should return emtpy when empty", func(t *testing.T) {
 		distinct := distinct(&LinkedList{})
