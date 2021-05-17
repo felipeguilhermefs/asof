@@ -2,7 +2,7 @@ package linkedlist
 
 import "testing"
 
-// TestLinkedList
+// TestLinkedListQuicksort
 func TestLinkedListQuicksort(t *testing.T) {
 
 	t.Run("Quicksort should sort", func(t *testing.T) {

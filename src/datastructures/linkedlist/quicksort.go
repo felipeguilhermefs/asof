@@ -1,5 +1,18 @@
 package linkedlist
 
+//quicksort inplace a linked list. O(nlgn) time complexity
+func quicksort(start, end *node) {
+	if start == nil || start == end {
+		return
+	}
+
+	pivot := partition(start, end)
+
+	quicksort(start, pivot)
+
+	quicksort(pivot.next, end)
+}
+
 func partition(start, end *node) *node {
 	if start == end || start == nil || end == nil {
 		return start
@@ -21,17 +34,4 @@ func partition(start, end *node) *node {
 	current.value, end.value = end.value, current.value
 
 	return prev
-}
-
-//quicksort inplace a linked list. O(nlgn) time complexity
-func quicksort(start, end *node) {
-	if start == nil || start == end {
-		return
-	}
-
-	pivot := partition(start, end)
-
-	quicksort(start, pivot)
-
-	quicksort(pivot.next, end)
 }
