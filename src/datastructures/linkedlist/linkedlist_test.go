@@ -168,63 +168,6 @@ func TestLinkedList(t *testing.T) {
 
 		assertSameOrder(t, &linkedList, []int{})
 	})
-
-	t.Run("Sort should sort", func(t *testing.T) {
-		linkedList := LinkedList{}
-		linkedList.PushRight(5)
-		linkedList.PushRight(2)
-		linkedList.PushRight(4)
-		linkedList.PushRight(1)
-		linkedList.PushRight(6)
-		linkedList.PushRight(3)
-		linkedList.PushRight(7)
-
-		linkedList.Sort()
-
-		assertSameOrder(t, &linkedList, []int{1, 2, 3, 4, 5, 6, 7})
-	})
-
-	t.Run("Sort should sort reversed list", func(t *testing.T) {
-		linkedList := LinkedList{}
-		linkedList.PushRight(7)
-		linkedList.PushRight(6)
-		linkedList.PushRight(5)
-		linkedList.PushRight(4)
-		linkedList.PushRight(3)
-		linkedList.PushRight(2)
-		linkedList.PushRight(1)
-
-		linkedList.Sort()
-
-		assertSameOrder(t, &linkedList, []int{1, 2, 3, 4, 5, 6, 7})
-	})
-
-	t.Run("Sort should sort already sorted list", func(t *testing.T) {
-		linkedList := LinkedList{}
-		linkedList.PushRight(1)
-		linkedList.PushRight(2)
-		linkedList.PushRight(3)
-		linkedList.PushRight(4)
-		linkedList.PushRight(5)
-		linkedList.PushRight(6)
-		linkedList.PushRight(7)
-
-		linkedList.Sort()
-
-		assertSameOrder(t, &linkedList, []int{1, 2, 3, 4, 5, 6, 7})
-	})
-
-	t.Run("Sort should sort with equal elements", func(t *testing.T) {
-		linkedList := LinkedList{}
-		linkedList.PushRight(1)
-		linkedList.PushRight(1)
-		linkedList.PushRight(1)
-		linkedList.PushRight(1)
-
-		linkedList.Sort()
-
-		assertSameOrder(t, &linkedList, []int{1, 1, 1, 1})
-	})
 }
 
 func assertSameOrder(t *testing.T, linkedList *LinkedList, expected []int) {
