@@ -144,20 +144,6 @@ func TestLinkedList(t *testing.T) {
 		assertSameOrder(t, &linkedList, []int{1, 3})
 	})
 
-	t.Run("should not visit any item in Traverse, if list is empty", func(t *testing.T) {
-		linkedList := LinkedList{}
-
-		visited := []int{}
-		linkedList.Traverse(func(item int) bool {
-			visited = append(visited, item)
-			return true
-		})
-
-		if len(visited) > 0 {
-			t.Fatalf("Found something: len= %d visited= %v", len(visited), visited)
-		}
-	})
-
 	t.Run("should empty the list", func(t *testing.T) {
 		linkedList := LinkedList{}
 		linkedList.PushRight(1)
@@ -175,15 +161,11 @@ func assertSameOrder(t *testing.T, linkedList *LinkedList, expected []int) {
 		t.Fatalf("Length error: got %d; want %d", linkedList.Len(), len(expected))
 	}
 
-	visited := []int{}
-	linkedList.Traverse(func(item int) bool {
-		visited = append(visited, item)
-		return true
-	})
-
+	current := linkedList.start
 	for i := range expected {
-		if visited[i] != expected[i] {
-			t.Fatalf("Unexpected: index= %d expected= %v visited= %v", i, expected, visited)
+		if current.value != expected[i] {
+			t.Fatalf("Unexpected: index= %d expected= %v visited= %d", i, expected, current.value)
 		}
+		current = current.next
 	}
 }

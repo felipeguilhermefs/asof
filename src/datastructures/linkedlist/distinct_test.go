@@ -27,19 +27,6 @@ func TestDistinct(t *testing.T) {
 		testList.PushRight(12)
 		testList.PushRight(2)
 
-		distinct := distinct(&testList)
-		if distinct.Len() != 3 {
-			t.Fatalf("Should have length 3, but len = %d", distinct.Len())
-		}
-
-		visited := []int{}
-		distinct.Traverse(func(value int) bool {
-			visited = append(visited, value)
-			return true
-		})
-		if visited[0] != 1 || visited[1] != 12 || visited[2] != 2 {
-			t.Fatalf("Visited elements different from expected, received %v", visited)
-		}
-
+		assertSameOrder(t, distinct(&testList), []int{1, 12, 2})
 	})
 }

@@ -1,7 +1,5 @@
 package linkedlist
 
-type TraverseFn = func(int) bool
-
 // LinkedList single link data structure
 type LinkedList struct {
 	start  *node
@@ -134,20 +132,6 @@ func (ll *LinkedList) Delete(element int) {
 
 			current.next = current.next.next
 			ll.length--
-			return
-		}
-
-		current = current.next
-	}
-}
-
-// Traverse call fn for each element in the list. O(n) time complexity
-func (ll *LinkedList) Traverse(fn func(int) bool) {
-	current := ll.start
-
-	for current != nil {
-
-		if !fn(current.value) {
 			return
 		}
 
