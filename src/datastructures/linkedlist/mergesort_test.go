@@ -6,68 +6,43 @@ import "testing"
 func TestMergesort(t *testing.T) {
 
 	t.Run("Mergesort should sort", func(t *testing.T) {
-		linkedList := LinkedList{}
-		linkedList.PushRight(5)
-		linkedList.PushRight(2)
-		linkedList.PushRight(4)
-		linkedList.PushRight(1)
-		linkedList.PushRight(6)
-		linkedList.PushRight(3)
-		linkedList.PushRight(7)
+		testList := newList([]int{5, 2, 4, 1, 6, 3, 7})
 
-		linkedList.start = mergesort(linkedList.start)
+		testList.start = mergesort(testList.start)
 
-		linkedList.end = findEnd(linkedList.start)
+		testList.end = findEnd(testList.start)
 
-		assertSameOrder(t, &linkedList, []int{1, 2, 3, 4, 5, 6, 7})
+		assertSameOrder(t, testList, []int{1, 2, 3, 4, 5, 6, 7})
 	})
 
 	t.Run("Mergesort should sort reversed list", func(t *testing.T) {
-		linkedList := LinkedList{}
-		linkedList.PushRight(7)
-		linkedList.PushRight(6)
-		linkedList.PushRight(5)
-		linkedList.PushRight(4)
-		linkedList.PushRight(3)
-		linkedList.PushRight(2)
-		linkedList.PushRight(1)
+		testList := newList([]int{7, 6, 5, 4, 3, 2, 1})
 
-		linkedList.start = mergesort(linkedList.start)
+		testList.start = mergesort(testList.start)
 
-		linkedList.end = findEnd(linkedList.start)
+		testList.end = findEnd(testList.start)
 
-		assertSameOrder(t, &linkedList, []int{1, 2, 3, 4, 5, 6, 7})
+		assertSameOrder(t, testList, []int{1, 2, 3, 4, 5, 6, 7})
 	})
 
 	t.Run("Mergesort should sort already sorted list", func(t *testing.T) {
-		linkedList := LinkedList{}
-		linkedList.PushRight(1)
-		linkedList.PushRight(2)
-		linkedList.PushRight(3)
-		linkedList.PushRight(4)
-		linkedList.PushRight(5)
-		linkedList.PushRight(6)
-		linkedList.PushRight(7)
+		testList := newList([]int{1, 2, 3, 4, 5, 6, 7})
 
-		linkedList.start = mergesort(linkedList.start)
+		testList.start = mergesort(testList.start)
 
-		linkedList.end = findEnd(linkedList.start)
+		testList.end = findEnd(testList.start)
 
-		assertSameOrder(t, &linkedList, []int{1, 2, 3, 4, 5, 6, 7})
+		assertSameOrder(t, testList, []int{1, 2, 3, 4, 5, 6, 7})
 	})
 
 	t.Run("Mergesort should sort with equal elements", func(t *testing.T) {
-		linkedList := LinkedList{}
-		linkedList.PushRight(1)
-		linkedList.PushRight(1)
-		linkedList.PushRight(1)
-		linkedList.PushRight(1)
+		testList := newList([]int{1, 1, 1, 1})
 
-		linkedList.start = mergesort(linkedList.start)
+		testList.start = mergesort(testList.start)
 
-		linkedList.end = findEnd(linkedList.start)
+		testList.end = findEnd(testList.start)
 
-		assertSameOrder(t, &linkedList, []int{1, 1, 1, 1})
+		assertSameOrder(t, testList, []int{1, 1, 1, 1})
 	})
 }
 

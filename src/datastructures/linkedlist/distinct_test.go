@@ -20,13 +20,8 @@ func TestDistinct(t *testing.T) {
 	})
 
 	t.Run("should return only distinct elements", func(t *testing.T) {
-		testList := LinkedList{}
-		testList.PushRight(1)
-		testList.PushRight(1)
-		testList.PushRight(1)
-		testList.PushRight(12)
-		testList.PushRight(2)
+		testList := newList([]int{1, 1, 1, 12, 2})
 
-		assertSameOrder(t, distinct(&testList), []int{1, 12, 2})
+		assertSameOrder(t, distinct(testList), []int{1, 12, 2})
 	})
 }
