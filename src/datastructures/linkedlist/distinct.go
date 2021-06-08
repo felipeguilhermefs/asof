@@ -5,6 +5,7 @@ import "github.com/felipeguilhermefs/asof/datastructures/set"
 // distinct returns a new LinkedList with distinct elements
 // for a linked list we can do this by keeping a collection of seen elements
 // and checking against that. In this case we used the Set datastructure
+// O(n) Time complexity. O(n) space complexity.
 func distinct(list *LinkedList) *LinkedList {
 	distinct := LinkedList{}
 	if list == nil {

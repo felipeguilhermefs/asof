@@ -1,6 +1,7 @@
 package linkedlist
 
-//reverse the linked list inplace
+// reverse the linked list inplace.
+// O(n) Time Complextity
 func reverse(list *LinkedList) {
 	if list == nil {
 		return

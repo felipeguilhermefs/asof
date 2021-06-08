@@ -1,6 +1,7 @@
 package linkedlist
 
-//mergesort inplace a linked list. O(nlgn) time complexity
+// mergesort inplace a linked list.
+// O(nlgn) time complexity
 func mergesort(start *node) *node {
 	if start == nil || start.next == nil {
 		return start
@@ -23,9 +24,12 @@ func getMiddle(start *node) *node {
 		return start
 	}
 
+	// to get the middle of a linked list we need 2 pointers
+	// a slow pointer moves forward 1 step, and the fast 2 steps
+	// when the fast reaches the end, the slow pointer will be
+	// roughly in the middle
 	slow := start
 	fast := start
-
 	for fast.next != nil && fast.next.next != nil {
 		slow = slow.next
 		fast = fast.next.next
@@ -43,6 +47,7 @@ func combine(left, right *node) *node {
 		return left
 	}
 
+	// we keep the start to represent the left most/smallest element
 	var start *node
 
 	if left.value < right.value {
@@ -53,6 +58,8 @@ func combine(left, right *node) *node {
 		right = right.next
 	}
 
+	// current will hold the "current" smallest element
+	// so we can interweave left and right nodes
 	current := start
 	for left != nil && right != nil {
 		if left.value < right.value {
@@ -66,6 +73,7 @@ func combine(left, right *node) *node {
 		}
 	}
 
+	// append the remaining side
 	if left != nil {
 		current.next = left
 	} else {

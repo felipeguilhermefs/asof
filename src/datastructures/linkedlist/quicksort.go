@@ -1,6 +1,7 @@
 package linkedlist
 
-//quicksort inplace a linked list. O(nlgn) time complexity
+// quicksort inplace a linked list.
+// O(nlgn) Time complexity
 func quicksort(start, end *node) {
 	if start == nil || start == end {
 		return
@@ -18,9 +19,12 @@ func partition(start, end *node) *node {
 		return start
 	}
 
+	// prev holds the last element smaller than the pivot
 	prev := start
+	// current holds the position where smaller elements could be placed
 	current := start
-
+	// we are using the end node as pivot, so anything smaller
+	// will be grouped at the start.
 	for start != end {
 		if start.value < end.value {
 			prev = current
@@ -33,5 +37,7 @@ func partition(start, end *node) *node {
 
 	current.value, end.value = end.value, current.value
 
+	// since we are just swapping values we just need to return prev
+	// as it points to division point found by the chosen pivot
 	return prev
 }
