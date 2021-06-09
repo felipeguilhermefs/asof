@@ -1,7 +1,7 @@
 package linkedlist
 
 // LinkedList liner collection of elements more info: https://en.wikipedia.org/wiki/Linked_list
-// This implementation uses a singly linked list approach
+// This implementation uses a doubly linked list approach
 type LinkedList struct {
 	start  *node
 	end    *node
@@ -9,14 +9,19 @@ type LinkedList struct {
 }
 
 type node struct {
-	value int
-	next  *node
+	value    int
+	previous *node
+	next     *node
 }
 
 // PushRight pushes an element to the end/right of the list.
 // O(1) time complexity
 func (ll *LinkedList) PushRight(element int) {
-	newNode := &node{element, nil}
+	newNode := &node{
+		value:    element,
+		previous: ll.end,
+		next:     nil,
+	}
 
 	if ll.IsEmpty() {
 		ll.start = newNode
@@ -72,10 +77,19 @@ func (ll *LinkedList) PopRight() (int, bool) {
 // PushLeft add an element to the start/left of the list.
 // O(1) time complexity
 func (ll *LinkedList) PushLeft(element int) {
-	newNode := &node{element, ll.start}
+	newNode := &node{
+		value:    element,
+		previous: nil,
+		next:     ll.start,
+	}
 
 	if ll.IsEmpty() {
 		ll.end = newNode
+	} else {
+		// when not empty the current start node should point
+		// to the new one before it is updated, so we don't get
+		// a broken link
+		ll.start.previous = newNode
 	}
 
 	ll.start = newNode
