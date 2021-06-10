@@ -39,39 +39,24 @@ func (ll *LinkedList) PushRight(element int) {
 // PopRight remove and return the element at the end of the list.
 //     If not empty returns element, true
 //     Else 					 -1, false
-// O(n) time complexity
+// O(1) time complexity
 func (ll *LinkedList) PopRight() (int, bool) {
 	if ll.IsEmpty() {
 		return -1, false
 	}
 
+	element := ll.end.value
+
 	// single element
 	if ll.start == ll.end {
-		element := ll.end.value
-
 		ll.Clear()
-
-		return element, true
+	} else {
+		ll.end = ll.end.previous
+		ll.end.next = nil
+		ll.length--
 	}
 
-	// To pop the right most element the second to last needs to be found
-	// so it can become the last one. Since it is a singly linked list
-	// we need to traverse the list to find it
-	current := ll.start
-	for current.next != nil {
-		if current.next == ll.end {
-			element := ll.end.value
-
-			ll.end = current
-			ll.end.next = nil
-			ll.length--
-
-			return element, true
-		}
-	}
-
-	// should never get here
-	return -1, false
+	return element, true
 }
 
 // PushLeft add an element to the start/left of the list.
@@ -112,6 +97,7 @@ func (ll *LinkedList) PopLeft() (int, bool) {
 		ll.Clear()
 	} else {
 		ll.start = ll.start.next
+		ll.start.previous = nil
 		ll.length--
 	}
 
