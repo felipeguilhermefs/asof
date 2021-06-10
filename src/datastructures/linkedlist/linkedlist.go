@@ -130,16 +130,21 @@ func (ll *LinkedList) Delete(element int) {
 		return
 	}
 
-	// We keep the current node and operate over next pointer so we
-	// can adjust pointers when the element is found
-	current := ll.start
-	for current.next != nil {
-		if current.next.value == element {
-			if current.next == ll.end {
-				ll.end = current
+	if ll.end.value == element {
+		ll.PopRight()
+
+		return
+	}
+
+	current := ll.start.next
+	for current != nil {
+		if current.value == element {
+			current.previous.next = current.next
+
+			if current.next != nil {
+				current.next.previous = current.previous
 			}
 
-			current.next = current.next.next
 			ll.length--
 			return
 		}
