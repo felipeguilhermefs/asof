@@ -7,16 +7,12 @@ func reverse(list *LinkedList) {
 		return
 	}
 
-	list.end = list.start
-
-	var prev *node
 	current := list.start
 	for current != nil {
 		next := current.next
-		current.next = prev
-		prev = current
+		current.next, current.previous = current.previous, current.next
 		current = next
 	}
 
-	list.start = prev
+	list.end, list.start = list.start, list.end
 }
