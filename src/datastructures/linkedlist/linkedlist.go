@@ -139,18 +139,29 @@ func (ll *LinkedList) Delete(element int) {
 	current := ll.start.next
 	for current != nil {
 		if current.value == element {
-			current.previous.next = current.next
-
-			if current.next != nil {
-				current.next.previous = current.previous
-			}
-
-			ll.length--
+			ll.deleteNode(current)
 			return
 		}
 
 		current = current.next
 	}
+}
+
+// deleteNode removes the node from the list, it is supposed to be used internally only
+func (ll *LinkedList) deleteNode(n *node) {
+	if n == nil {
+		return
+	}
+
+	if n.previous != nil {
+		n.previous.next = n.next
+	}
+
+	if n.next != nil {
+		n.next.previous = n.previous
+	}
+
+	ll.length--
 }
 
 // Clear empties the list.

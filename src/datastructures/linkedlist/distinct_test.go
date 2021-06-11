@@ -6,22 +6,26 @@ import "testing"
 func TestDistinct(t *testing.T) {
 
 	t.Run("should return emtpy when empty", func(t *testing.T) {
-		distinct := distinct(&LinkedList{})
-		if distinct.Len() != 0 {
-			t.Fatalf("Should be empty, but len = %d", distinct.Len())
+		testList := &LinkedList{}
+		distinct(testList)
+		if testList.Len() != 0 {
+			t.Fatalf("Should be empty, but len = %d", testList.Len())
 		}
 	})
 
 	t.Run("should return emtpy when nil", func(t *testing.T) {
-		distinct := distinct(nil)
-		if distinct.Len() != 0 {
-			t.Fatalf("Should be empty, but len = %d", distinct.Len())
+		var testList *LinkedList
+		distinct(testList)
+		if testList != nil {
+			t.Fatalf("Should be nil, but received = %v", testList)
 		}
 	})
 
 	t.Run("should return only distinct elements", func(t *testing.T) {
-		testList := newList([]int{1, 1, 1, 12, 2})
+		testList := newList([]int{1, 1, 1, 12, 1, 2})
 
-		assertSameOrder(t, distinct(testList), []int{1, 12, 2})
+		distinct(testList)
+
+		assertSameOrder(t, testList, []int{1, 12, 2})
 	})
 }
