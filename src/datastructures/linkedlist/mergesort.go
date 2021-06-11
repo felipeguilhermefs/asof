@@ -7,19 +7,16 @@ func mergesort(start *node) *node {
 		return start
 	}
 
-	middle := getMiddle(start)
-	lastHalf := middle.next
-
-	middle.next = nil
+	middle := split(start)
 
 	left := mergesort(start)
-	right := mergesort(lastHalf)
+	right := mergesort(middle)
 
-	res := combine(left, right)
+	res := merge(left, right)
 	return res
 }
 
-func getMiddle(start *node) *node {
+func split(start *node) *node {
 	if start == nil {
 		return start
 	}
@@ -35,10 +32,16 @@ func getMiddle(start *node) *node {
 		fast = fast.next.next
 	}
 
-	return slow
+	middle := slow.next
+
+	// to effectively split we should drop the borders pointers
+	middle.previous = nil
+	slow.next = nil
+
+	return middle
 }
 
-func combine(left, right *node) *node {
+func merge(left, right *node) *node {
 	if left == nil {
 		return right
 	}
@@ -63,11 +66,11 @@ func combine(left, right *node) *node {
 	current := start
 	for left != nil && right != nil {
 		if left.value < right.value {
-			current.next = left
+			current.next, left.previous = left, current
 			current = left
 			left = left.next
 		} else {
-			current.next = right
+			current.next, right.previous = right, current
 			current = right
 			right = right.next
 		}
@@ -75,9 +78,9 @@ func combine(left, right *node) *node {
 
 	// append the remaining side
 	if left != nil {
-		current.next = left
+		current.next, left.previous = left, current
 	} else {
-		current.next = right
+		current.next, right.previous = right, current
 	}
 
 	return start
