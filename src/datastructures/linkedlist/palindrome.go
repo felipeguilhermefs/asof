@@ -1,27 +1,25 @@
 package linkedlist
 
-import "github.com/felipeguilhermefs/asof/datastructures/stack"
-
 // palindrome check if the LinkedList is a palindrome.
-// A simple way to check if the singly linked list is a
-// palindrome is using a stack, but we need to traverse it 2 times.
-// O(n) time complexity. O(n) space complexity.
+// In a doubly linked list it is enough to traverse in both
+// directions comparing left and right elements.
+// O(n) time complexity.
 func palindrome(list *LinkedList) bool {
-	s := stack.NewStack()
-
-	current := list.start
-	for current != nil {
-		s.Push(current.value)
-		current = current.next
+	if list == nil || list.IsEmpty() {
+		return false
 	}
 
-	current = list.start
-	for current != nil {
-		sValue, ok := s.Pop()
-		if !ok || sValue != current.value {
+	half := list.Len() / 2
+	left := list.start
+	right := list.end
+	// As optimization we traverse only half of the list in the worst case.
+	for i := 0; i <= half; i++ {
+		if left.value != right.value {
 			return false
 		}
-		current = current.next
+
+		left = left.next
+		right = right.previous
 	}
 
 	return true

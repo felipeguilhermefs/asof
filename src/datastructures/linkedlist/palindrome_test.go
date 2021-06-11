@@ -20,14 +20,9 @@ func TestPalindrome(t *testing.T) {
 			t.Fatalf("Should be palindrome: %v", l3)
 		}
 
-		l4 := newList([]int{})
+		l4 := newList([]int{9})
 		if !palindrome(l4) {
 			t.Fatalf("Should be palindrome: %v", l4)
-		}
-
-		l5 := newList([]int{9})
-		if !palindrome(l5) {
-			t.Fatalf("Should be palindrome: %v", l5)
 		}
 	})
 
@@ -45,6 +40,11 @@ func TestPalindrome(t *testing.T) {
 		l3 := newList([]int{6, 3, 2, 8})
 		if palindrome(l3) {
 			t.Fatalf("Should NOT be palindrome: %v", l3)
+		}
+
+		l4 := newList([]int{})
+		if palindrome(l4) {
+			t.Fatalf("Should NOT be palindrome: %v", l4)
 		}
 	})
 }
